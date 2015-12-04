@@ -30,10 +30,10 @@ CREATE TABLE `crawl_blogs`(
   create_date   	DATETIME NOT NULL ,
   update_date   	DATETIME NOT NULL,
   vistors_num   	INT(10)，
-  local_vistors_num 	INT,
+  local_vistors_num 	INT(10),
   tag			VARCHAR(250),
   category		VARCHAR(100)，
-  reprint		TINYINT DEFAULT 0,
+  reprint		TINYINT(1) DEFAULT 0,
   reprint_url 		VARCHAR(150),
   reprint_author 	VARCHAR(50),
   other 		VARCHAR(200),
