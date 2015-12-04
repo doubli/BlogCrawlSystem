@@ -1,6 +1,6 @@
 ﻿use `crawl_system`;
 
-DROP TABLE IF EXISTS `crarl_blogs`;
+DROP TABLE IF EXISTS `crawl_blogs`;
 
 -- -----------------------------------------------------------
 -- id 					文章主键
@@ -26,17 +26,17 @@ CREATE TABLE `crawl_blogs`(
   title         	CHAR(100) NOT NULL ,
   content       	TEXT NOT NULL ,
   author        	VARCHAR(50) NOT NULL ,
-  write_date    	TIMESTAMP NOT NULL,
-  create_date   	DATETIME NOT NULL ,
-  update_date   	DATETIME NOT NULL,
-  vistors_num   	INT(10)，
-  local_vistors_num 	INT(10),
-  tag			VARCHAR(250),
-  category		VARCHAR(100),
-  reprint		TINYINT(1) DEFAULT 0,
-  reprint_url 		VARCHAR(150),
-  reprint_author 	VARCHAR(50),
-  other 		VARCHAR(200),
+  write_date		TIMESTAMP NOT NULL,
+  create_date		TIMESTAMP NOT NULL,
+  update_date		TIMESTAMP NOT NULL,
+  vistors_num   		INT(10),
+  local_vistors_num  	INT(10),
+  tag					VARCHAR(250),
+  category 				VARCHAR(100),
+  reprint				TINYINT(1) DEFAULT 0,
+  reprint_url 			VARCHAR(150),
+  reprint_author 		VARCHAR(50),
+  other 				VARCHAR(200),
   index(author),
   index(write_date),
   index(create_date),
@@ -57,9 +57,9 @@ CREATE TABLE `crawl_urls`(
 	id 			INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	url 			VARCHAR(150) NOT NULL,
 	author			VARCHAR(50),
-	interval_time 		INT(10) NOT DEFAULT 86400,
-	create_date 		TIMESTAMP NOT NULL ,
-	update_date 		TIMESTAMP NOT NULL ,
+	interval_time 		INT(10) NOT NULL DEFAULT 86400,
+	create_date			TIMESTAMP NOT NULL,
+	update_date			TIMESTAMP NOT NULL,
 	index(url),
 	index(create_date)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
