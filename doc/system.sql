@@ -29,7 +29,7 @@ CREATE TABLE `crawl_blogs`(
   write_date    	TIMESTAMP NOT NULL,
   create_date   	DATETIME NOT NULL ,
   update_date   	DATETIME NOT NULL,
-  vistors_num   	INT，
+  vistors_num   	INT(10)，
   local_vistors_num 	INT,
   tag			VARCHAR(250),
   category		VARCHAR(100)，
@@ -57,7 +57,7 @@ CREATE TABLE `crawl_urls`(
 	id 			INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	url 			VARCHAR(150) NOT NULL,
 	author			VARCHAR(50),
-	interval_time 		INT NOT DEFAULT 86400,
+	interval_time 		INT(10) NOT DEFAULT 86400,
 	create_date 		TIMESTAMP NOT NULL ,
 	update_date 		TIMESTAMP NOT NULL ,
 	index(url),
