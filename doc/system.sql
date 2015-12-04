@@ -26,9 +26,9 @@ CREATE TABLE `crawl_blogs`(
   title         	CHAR(100) NOT NULL ,
   content       	TEXT NOT NULL ,
   author        	VARCHAR(50) NOT NULL ,
-  write_date    	DATETIME NOT NULL ,
-  create_date   	DATETIME NOT NULL DEFAULT now() ,
-  update_date   	DATETIME NOT NULL DEFAULT now(),
+  write_date    	TIMESTAMP NOT NULL,
+  create_date   	DATETIME NOT NULL ,
+  update_date   	DATETIME NOT NULL,
   vistors_num   	INT，
   local_vistors_num 	INT,
   tag			VARCHAR(250),
@@ -58,8 +58,8 @@ CREATE TABLE `crawl_urls`(
 	url 			VARCHAR(150) NOT NULL,
 	author			VARCHAR(50),
 	interval_time 		INT NOT DEFAULT 86400,
-	create_date 		DATETIME NOT NULL DEFAULT now(),
-	update_date 		DATETIME NOT NULL DEFAULT now(),
+	create_date 		TIMESTAMP NOT NULL ,
+	update_date 		TIMESTAMP NOT NULL ,
 	index(url),
 	index(create_date)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
