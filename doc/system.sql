@@ -32,7 +32,7 @@ CREATE TABLE `crawl_blogs`(
   vistors_num   	INT(10)，
   local_vistors_num 	INT(10),
   tag			VARCHAR(250),
-  category		VARCHAR(100)，
+  category		VARCHAR(100),
   reprint		TINYINT(1) DEFAULT 0,
   reprint_url 		VARCHAR(150),
   reprint_author 	VARCHAR(50),
