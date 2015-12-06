@@ -1,0 +1,5 @@
+com\xiyou\BCS\dao\UserDAO.class
+com\xiyou\BCS\service\UserService.class
+com\xiyou\BCS\model\User.class
+com\xiyou\BCS\service\impl\UserServiceImpl.class
+com\xiyou\BCS\dao\impl\UserDAOImpl.class
