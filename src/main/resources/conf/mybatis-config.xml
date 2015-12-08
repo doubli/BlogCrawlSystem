@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
         <!-- 命名空间 -->
     <typeAliases>
-         <typeAlias alias="User" type="edu.xiyou.BCS.model.User"/>
+        <package name="edu.xiyou.BCS.model"/>
     </typeAliases>
 
     <!-- 映射map -->
