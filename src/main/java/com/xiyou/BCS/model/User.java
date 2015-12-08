@@ -1,35 +1,35 @@
 package com.xiyou.BCS.model;
-//com.xiyou.BCS.model.User
+
 /**
  * 用户表
+ * @author menghucheng
  */
 public class User {
-	
-    private int id;
-    
-    private String name;
-
+	private int id;
+	private int age;
+	private String name;
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
 	public String getName() {
 		return name;
 	}
-
-	public void setName(String string) {
-		this.name = string;
+	public void setName(String name) {
+		this.name = name;
 	}
-
+	
+	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + "]";
+		return "User [id=" + id + ", age=" + age + ", name=" + name + "]";
 	}
-    
-	
-	
 }
