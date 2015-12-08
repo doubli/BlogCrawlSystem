@@ -40,14 +40,14 @@
     delete from crawl_blogs
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="edu.xiyou.BCS.model.CrawlBlog">
-    insert into crawl_blogs (id, url, title, 
+  <insert id="insert" parameterType="edu.xiyou.BCS.model.CrawlBlog" useGeneratedKeys="true" keyProperty="id">
+    insert into crawl_blogs (url, title,
       author, write_date, create_date, 
       update_date, vistors_num, local_vistors_num, 
       tag, category, reprint, 
       reprint_url, reprint_author, other, 
       content)
-    values (#{id,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{title,jdbcType=CHAR}, 
+    values ( #{url,jdbcType=VARCHAR}, #{title,jdbcType=CHAR},
       #{author,jdbcType=VARCHAR}, #{writeDate,jdbcType=TIMESTAMP}, #{createDate,jdbcType=TIMESTAMP}, 
       #{updateDate,jdbcType=TIMESTAMP}, #{vistorsNum,jdbcType=INTEGER}, #{localVistorsNum,jdbcType=INTEGER}, 
       #{tag,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{reprint,jdbcType=BIT}, 
