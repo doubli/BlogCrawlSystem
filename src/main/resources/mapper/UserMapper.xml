@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiyou.BCS.dao.UserDAO">
+         
+         <sql id="allmenbers">
+         id,
+         age,
+         name
+         </sql>
+         
+         <sql id="menberEcpId">
+       	 age,
+         name
+         </sql>
+         
+         <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyColumn="id">
+             insert into user(age,
+             name) 
+       		 values 
+             (#{age},
+             #{name})        
+         
+         </insert>
+         
+<!--          <delete id="deleteStudent" parameterType="int">
+             delete from users_name where id = #{id}
+         </delete>
+         
+         <update id="updateStudent" parameterType="Student">
+             update users_name set name = #{name} where id = #{id}
+         </update>
+         
+         <select id="queryStudentById" parameterType="int" resultType="Student">
+           select * from users_name where id=#{id}
+         </select> 
+         
+         <select id="queryAllStudents" resultType="Student">
+             select * from users_name
+         </select> -->
+         
+         
+
+</mapper>
