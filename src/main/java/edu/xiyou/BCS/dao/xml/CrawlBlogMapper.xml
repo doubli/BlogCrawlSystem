@@ -40,14 +40,14 @@
     delete from crawl_blogs
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="edu.xiyou.BCS.model.CrawlBlog">
-    insert into crawl_blogs (id, url, title, 
+  <insert id="insert" parameterType="edu.xiyou.BCS.model.CrawlBlog" useGeneratedKeys="true" keyProperty="id">
+    insert into crawl_blogs (url, title,
       author, write_date, create_date, 
       update_date, vistors_num, local_vistors_num, 
       tag, category, reprint, 
       reprint_url, reprint_author, other, 
       content)
-    values (#{id,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{title,jdbcType=CHAR}, 
+    values ( #{url,jdbcType=VARCHAR}, #{title,jdbcType=CHAR},
       #{author,jdbcType=VARCHAR}, #{writeDate,jdbcType=TIMESTAMP}, #{createDate,jdbcType=TIMESTAMP}, 
       #{updateDate,jdbcType=TIMESTAMP}, #{vistorsNum,jdbcType=INTEGER}, #{localVistorsNum,jdbcType=INTEGER}, 
       #{tag,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{reprint,jdbcType=BIT}, 
@@ -245,4 +245,62 @@
       other = #{other,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectBySelective" parameterType="edu.xiyou.BCS.model.CrawlBlog" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from crawl_blogs
+    <where>
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=CHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="writeDate != null">
+        write_date = #{writeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vistorsNum != null">
+        vistors_num = #{vistorsNum,jdbcType=INTEGER},
+      </if>
+      <if test="localVistorsNum != null">
+        local_vistors_num = #{localVistorsNum,jdbcType=INTEGER},
+      </if>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="reprint != null">
+        reprint = #{reprint,jdbcType=BIT},
+      </if>
+      <if test="reprintUrl != null">
+        reprint_url = #{reprintUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="reprintAuthor != null">
+        reprint_author = #{reprintAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </where>
+  </select>
 </mapper>

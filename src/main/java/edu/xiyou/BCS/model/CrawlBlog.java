@@ -2,7 +2,7 @@ package edu.xiyou.BCS.model;
 
 import java.util.Date;
 
-public class CrawlBlog {
+public class CrawlBlog extends BaseModel{
     private Integer id;
 
     private String url;
