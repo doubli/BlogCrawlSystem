@@ -15,6 +15,7 @@
     http://www.springframework.org/schema/util 
     http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
+
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		 destroy-method="close">
 		<property name="driverClass">

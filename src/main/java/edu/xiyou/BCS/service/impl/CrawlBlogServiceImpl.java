@@ -6,6 +6,7 @@ import edu.xiyou.BCS.service.CrawlBlogService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by andrew on 15-12-8.
@@ -13,8 +14,12 @@ import javax.annotation.Resource;
 @Service
 public class CrawlBlogServiceImpl implements CrawlBlogService{
     @Resource
-    CrawlBlogMapper crawlBlogMapper;
+    private CrawlBlogMapper crawlBlogMapper;
 
+    @Override
+    public List<CrawlBlog> selectByselective(CrawlBlog record) {
+        return null;
+    }
 
     public CrawlBlogMapper getCrawlBlogMapper() {
         return crawlBlogMapper;

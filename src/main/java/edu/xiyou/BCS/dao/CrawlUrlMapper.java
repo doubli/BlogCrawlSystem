@@ -2,6 +2,8 @@ package edu.xiyou.BCS.dao;
 
 import edu.xiyou.BCS.model.CrawlUrl;
 
+import java.util.List;
+
 public interface CrawlUrlMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface CrawlUrlMapper {
     int updateByPrimaryKeySelective(CrawlUrl record);
 
     int updateByPrimaryKey(CrawlUrl record);
+
+    List<CrawlUrl> selectBySelective(CrawlUrl record);
 }
