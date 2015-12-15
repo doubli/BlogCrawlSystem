@@ -11,6 +11,9 @@ import java.util.List;
 
 //为操作博客提供服务
 public interface CrawlBlogService {
-    List<CrawlBlog> selectByselective(CrawlBlog record);
+    List<CrawlBlog> selectBySelective(CrawlBlog record) throws Exception;
 
+    int insert(CrawlBlog record) throws Exception;
+
+    int insertSelective(CrawlBlog record) throws Exception;
 }

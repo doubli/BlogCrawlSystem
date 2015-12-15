@@ -2,6 +2,8 @@ package edu.xiyou.BCS.dao;
 
 import edu.xiyou.BCS.model.CrawlBlog;
 
+import java.util.List;
+
 public interface CrawlBlogMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -16,4 +18,6 @@ public interface CrawlBlogMapper {
     int updateByPrimaryKeyWithBLOBs(CrawlBlog record);
 
     int updateByPrimaryKey(CrawlBlog record);
+
+    List<CrawlBlog> selectBySelective(CrawlBlog record);
 }
