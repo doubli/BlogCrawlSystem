@@ -49,17 +49,22 @@ DROP TABLE IF EXISTS `crawl_urls`;
 -- id 				主键
 -- url 				抓取的链接
 -- author 			作者
+-- regex 			正则
 -- interval_time 		抓取的间隔时间 86400 = 24 * 60 * 60 秒 一天
 -- create_date 			创建时间
 -- update_date 			更新时间
+-- crawl_date 			上一次爬取的时间
 -- -----------------------------------------------------------
 CREATE TABLE `crawl_urls`(
-	id 			INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	url 			VARCHAR(150) NOT NULL,
-	author			VARCHAR(50),
+	id 			             INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	url 			             VARCHAR(150) NOT NULL,
+	author			       VARCHAR(50),
+  regex               VARCHAR(100) NOT NULL,
 	interval_time 		INT(10) NOT NULL DEFAULT 86400,
-	create_date			TIMESTAMP NOT NULL,
+	create_date			  TIMESTAMP NOT NULL,
 	update_date			TIMESTAMP NOT NULL,
+  crawl_date        TIMESTAMP NOT NULL,
 	index(url),
-	index(create_date)
+	index(create_date),
+  index(crawl_date)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
