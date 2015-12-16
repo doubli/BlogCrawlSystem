@@ -5,12 +5,14 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="url" jdbcType="VARCHAR" property="url"/>
         <result column="author" jdbcType="VARCHAR" property="author"/>
+        <result column="regex" jdbcType="VARCHAR" property="regex"/>
         <result column="interval_time" jdbcType="INTEGER" property="intervalTime"/>
         <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
         <result column="update_date" jdbcType="TIMESTAMP" property="updateDate"/>
+        <result column="crawl_date" jdbcType="TIMESTAMP" property="crawlDate"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, url, author, interval_time, create_date, update_date
+    id, url, author, regex, interval_time, create_date, update_date, crawl_date
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
@@ -23,11 +25,11 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="edu.xiyou.BCS.model.CrawlUrl" useGeneratedKeys="true" keyProperty="id">
-    insert into crawl_urls (url, author,
-      interval_time, create_date, update_date
+    insert into crawl_urls (url, author,regex,
+      interval_time, create_date, update_date,crawl_date
       )
-    values ( #{url,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR},
-      #{intervalTime,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+    values ( #{url,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR},#{regex,jdbcType=VARCHAR},
+      #{intervalTime,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP},#{crawlDate,jdbcType=TIMESTAMP}
       )
   </insert>
     <insert id="insertSelective" parameterType="edu.xiyou.BCS.model.CrawlUrl">
@@ -42,6 +44,9 @@
             <if test="author != null">
                 author,
             </if>
+            <if test="regex != null">
+                regex,
+            </if>
             <if test="intervalTime != null">
                 interval_time,
             </if>
@@ -50,6 +55,9 @@
             </if>
             <if test="updateDate != null">
                 update_date,
+            </if>
+            <if test="crawlDate != null">
+                crawl_date,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -62,6 +70,9 @@
             <if test="author != null">
                 #{author,jdbcType=VARCHAR},
             </if>
+            <if test="regex != null">
+                #{regex,jdbcType=VARCHAR},
+            </if>
             <if test="intervalTime != null">
                 #{intervalTime,jdbcType=INTEGER},
             </if>
@@ -70,6 +81,9 @@
             </if>
             <if test="updateDate != null">
                 #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="crawlDate != null">
+                #{crawlDate,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
@@ -82,6 +96,9 @@
             <if test="author != null">
                 author = #{author,jdbcType=VARCHAR},
             </if>
+            <if test="regex != null">
+                regex = #{regex,jdbcType=VARCHAR},
+            </if>
             <if test="intervalTime != null">
                 interval_time = #{intervalTime,jdbcType=INTEGER},
             </if>
@@ -91,6 +108,9 @@
             <if test="updateDate != null">
                 update_date = #{updateDate,jdbcType=TIMESTAMP},
             </if>
+            <if test="crawlDate != null">
+                crawl_date = #{crawlDate,jdbcType=TIMESTAMP},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -98,9 +118,11 @@
     update crawl_urls
     set url = #{url,jdbcType=VARCHAR},
       author = #{author,jdbcType=VARCHAR},
+      regex = #{regex,jdbcType=VARCHAR},
       interval_time = #{intervalTime,jdbcType=INTEGER},
       create_date = #{createDate,jdbcType=TIMESTAMP},
-      update_date = #{updateDate,jdbcType=TIMESTAMP}
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      crawl_date = #{crawlDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -118,6 +140,9 @@
             <if test="author != null">
                 author = #{author,jdbcType=VARCHAR},
             </if>
+            <if test="regex != null">
+                regex = #{regex,jdbcType=VARCHAR},
+            </if>
             <if test="intervalTime != null">
                 interval_time = #{intervalTime,jdbcType=INTEGER},
             </if>
@@ -126,6 +151,9 @@
             </if>
             <if test="updateDate != null">
                 update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="crawlDate != null">
+                crawl_date = #{crawlDate,jdbcType=TIMESTAMP},
             </if>
         </where>
     </select>

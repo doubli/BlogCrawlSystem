@@ -9,11 +9,15 @@ public class CrawlUrl  extends BaseModel{
 
     private String author;
 
+    private String regex;
+
     private Integer intervalTime;
 
     private Date createDate;
 
     private Date updateDate;
+
+    private Date crawlDate;
 
     public Integer getId() {
         return id;
@@ -61,5 +65,21 @@ public class CrawlUrl  extends BaseModel{
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public Date getCrawlDate() {
+        return crawlDate;
+    }
+
+    public void setCrawlDate(Date crawlDate) {
+        this.crawlDate = crawlDate;
+    }
+
+    public String getRegex() {
+        return regex;
+    }
+
+    public void setRegex(String regex) {
+        this.regex = regex;
     }
 }
