@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.Resource;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,96 +26,77 @@ import java.util.List;
  */
 
 
-public class Spider {
+public class SpiderTest {
     private final static Logger LOG = LoggerFactory.getLogger(Spider.class);
-
-    @Resource
-    private CrawlUrlService crawlUrlService;
 
     private List<CrawlUrl> crawlUrlList;
 
     {
-        try {
-            crawlUrlList = crawlUrlService.selectBySelective(new CrawlUrl());
-        } catch (Exception e) {
-            crawlUrlList = Lists.newArrayList();
-        }
+        CrawlUrl crawlUrl = new CrawlUrl();
+        crawlUrl.setCrawlDate(new Date(0));
+        crawlUrl.setUrl("http://blog.csdn.net/omsvip");
+        crawlUrl.setRegex("http://blog.csdn.net/omsvip/article/details/[0-9]+\\b");
+        crawlUrl.setIntervalTime(60);
+        crawlUrlList = Collections.singletonList(crawlUrl);
     }
 
     private Html2BlogHandler handler;
     private Scheduler scheduler;
 
-    public Spider(Html2BlogHandler handler, Scheduler scheduler) {
+    public SpiderTest(Html2BlogHandler handler, Scheduler scheduler) {
         this.handler = handler;
         this.scheduler = scheduler;
     }
 
-    public Spider(Html2BlogHandler handler) {
+    public SpiderTest(Html2BlogHandler handler) {
         this(handler, new HashSetScheduler());
     }
 
-    public Spider() {
+    public SpiderTest() {
         this(new Html2BlogHandler(), new HashSetScheduler());
     }
 
-    public void fetch() {
+    public void fetch() throws InterruptedException {
         final Fetcher fetcher = new Fetcher(scheduler, handler);
         fetcher.init();
         fetcher.before();
 
         boolean flag = true;
-        List<String> seedList = Lists.newArrayList();
-        List<String> regexPosite = Lists.newArrayList();
-
-        for (CrawlUrl crawlUrl : crawlUrlList){
-            if (System.currentTimeMillis() - crawlUrl.getCrawlDate().getTime() > crawlUrl.getIntervalTime()) {
-                seedList.add(crawlUrl.getUrl());
-                regexPosite.add(crawlUrl.getRegex());
-            }
-        }
         for (CrawlUrl crawlUrl : crawlUrlList) {
             if (System.currentTimeMillis() - crawlUrl.getCrawlDate().getTime() > crawlUrl.getIntervalTime()) {
                 scheduler.offer(Collections.singletonList(crawlUrl.getUrl()));
-                handler.setRegexRule(new RegexRule(Collections.singletonList(crawlUrl.getRegex())));
+                RegexRule regexRule = new RegexRule();
+                regexRule.addPositive(crawlUrl.getRegex());
+                handler.setRegexRule(regexRule);
                 if (flag) {
+
                     fetcher.fetch();
                     flag = false;
                 }
             }
-
-            while (scheduler.currentCount() != 0) {
-                try {
-                    Thread.sleep(5);
-                    if (scheduler.currentCount() == 0) {
-                        Thread.sleep(10);
-                        if (scheduler.currentCount() == 0) {
-                            break;
-                        }
-                    }
-                } catch (InterruptedException e) {
-                    LOG.error("fetch sleep error", e);
+//            scheduler.offer(Arrays.asList());
+        }
+//        fetcher.fetch();
+        while (true) {
+            System.out.println("scheduler count : " + scheduler.currentCount());
+            if (scheduler.currentCount() != 0) {
+                Thread.sleep(5);
+            } else {
+                Thread.sleep(10);
+                if (scheduler.currentCount() == 0) {
+                    break;
                 }
             }
-            scheduler.clear();
         }
-
         fetcher.after();
         while (!fetcher.isClose()) {
             try {
+                System.out.println(" isclose ...........");
                 Thread.sleep(10);
             } catch (InterruptedException e) {
 
             }
         }
-    }
-
-
-    public CrawlUrlService getCrawlUrlService() {
-        return crawlUrlService;
-    }
-
-    public void setCrawlUrlService(CrawlUrlService crawlUrlService) {
-        this.crawlUrlService = crawlUrlService;
     }
 
     public List<CrawlUrl> getCrawlUrlList() {
@@ -139,5 +121,14 @@ public class Spider {
 
     public void setScheduler(Scheduler scheduler) {
         this.scheduler = scheduler;
+    }
+
+    public static void main(String[] args) {
+        SpiderTest spiderTest = new SpiderTest();
+        try {
+            spiderTest.fetch();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
