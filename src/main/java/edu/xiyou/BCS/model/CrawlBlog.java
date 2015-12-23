@@ -3,7 +3,10 @@ package edu.xiyou.BCS.model;
 import java.util.Date;
 
 public class CrawlBlog extends BaseModel{
-    private Integer id;
+	
+	private static final long serialVersionUID = -8553802546120316542L;
+
+	private Integer id;
 
     private String url;
 
@@ -162,4 +165,14 @@ public class CrawlBlog extends BaseModel{
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
+
+	@Override
+	public String toString() {
+		return "CrawlBlog [id=" + id + ", url=" + url + ", title=" + title + ", author=" + author + ", writeDate="
+				+ writeDate + ", createDate=" + createDate + ", updateDate=" + updateDate + ", vistorsNum=" + vistorsNum
+				+ ", localVistorsNum=" + localVistorsNum + ", tag=" + tag + ", category=" + category + ", reprint="
+				+ reprint + ", reprintUrl=" + reprintUrl + ", reprintAuthor=" + reprintAuthor + ", other=" + other
+				+ ", content=" + content + "]";
+	}
+    
 }
