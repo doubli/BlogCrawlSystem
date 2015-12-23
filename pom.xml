@@ -178,6 +178,16 @@
 			<version>1.0</version>
 		</dependency>
 		<!-- log end -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+            <groupId>com.googlecode.juniversalchardet</groupId>
+            <artifactId>juniversalchardet</artifactId>
+            <version>1.0.3</version>
+        </dependency>
 	</dependencies>
 	<build>
 		<finalName>BlogCrawlSystem</finalName>
