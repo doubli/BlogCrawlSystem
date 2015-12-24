@@ -15,7 +15,7 @@ public class Html2BlogHandler implements Handler{
 
     @Override
     public void onSuccess(Response response) {
-
+    	
     }
 
     @Override
