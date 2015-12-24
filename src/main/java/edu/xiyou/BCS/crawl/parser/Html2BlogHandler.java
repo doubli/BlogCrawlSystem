@@ -27,12 +27,16 @@ public class Html2BlogHandler implements Handler {
 
     @Override
     public void onSuccess(Response response) {
+<<<<<<< HEAD
         //提取需要的内容
 //        System.out.println(new String(response.getContent()));
 
 
         System.out.println("fetch ok fetchNum = " + num.incrementAndGet());
 
+=======
+    	
+>>>>>>> origin/master
     }
 
     @Override

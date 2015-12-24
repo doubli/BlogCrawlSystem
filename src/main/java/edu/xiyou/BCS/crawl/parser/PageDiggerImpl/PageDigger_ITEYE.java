@@ -2,7 +2,7 @@
  * CSDN博客网站的博客
  * 搜集所给的html页面的信息到对象中，并返回对象
  */
-package edu.xiyou.BCS.crawl;
+package edu.xiyou.BCS.crawl.parser.PageDiggerImpl;
 
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -11,15 +11,14 @@ import java.util.regex.Pattern;
 import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 
+import edu.xiyou.BCS.crawl.parser.PageDigger;
 import edu.xiyou.BCS.model.CrawlBlog;
 import edu.xiyou.BCS.util.StringRemoveRepeat;
 import edu.xiyou.BCS.util.dateUtil;
-import edu.xiyou.andrew.Egg.parser.Html;
 import edu.xiyou.andrew.Egg.parser.Response;
 
-public class PageDigger_ITEYE {
+public class PageDigger_ITEYE implements PageDigger{
 	
 	private  CrawlBlog cb = null;
 	
