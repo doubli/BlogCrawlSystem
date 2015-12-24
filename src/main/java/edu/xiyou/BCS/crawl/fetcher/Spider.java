@@ -58,6 +58,11 @@ public class Spider {
     }
 
     public void fetch() {
+        try {
+            handler.init();
+        } catch (Exception e) {
+            LOG.error("handler init fail Exception={}", e);
+        }
         final Fetcher fetcher = new Fetcher(scheduler, handler);
         fetcher.init();
         fetcher.before();

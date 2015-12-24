@@ -20,4 +20,6 @@ public interface CrawlBlogMapper {
     int updateByPrimaryKey(CrawlBlog record);
 
     List<CrawlBlog> selectBySelective(CrawlBlog record);
+
+    void deleteAllRecords();
 }

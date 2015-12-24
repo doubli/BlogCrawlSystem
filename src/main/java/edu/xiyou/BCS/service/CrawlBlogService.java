@@ -16,4 +16,6 @@ public interface CrawlBlogService {
     int insert(CrawlBlog record) throws Exception;
 
     int insertSelective(CrawlBlog record) throws Exception;
+
+    void deleteAllRecords() throws Exception;
 }
