@@ -2,7 +2,7 @@ package edu.xiyou.BCS.util;
 
 import org.mozilla.universalchardet.UniversalDetector;
 
-public class chartsetDetctor {
+public class ChartsetDetctor {
 	
 	public static String getCharset(byte[] content){
 		

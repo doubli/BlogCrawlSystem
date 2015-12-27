@@ -11,12 +11,10 @@ import java.util.regex.Pattern;
 import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 
 import edu.xiyou.BCS.model.CrawlBlog;
+import edu.xiyou.BCS.util.DateUtil;
 import edu.xiyou.BCS.util.StringRemoveRepeat;
-import edu.xiyou.BCS.util.dateUtil;
-import edu.xiyou.andrew.Egg.parser.Html;
 import edu.xiyou.andrew.Egg.parser.Response;
 
 public class PageDigger_ITEYE {
@@ -64,17 +62,17 @@ public class PageDigger_ITEYE {
 		
 		//设置write_date 				文章发布的时间
 		String writeDateStr = document.select(".blog_bottom ul li:eq(0)").text();
-		Date writeDate = dateUtil.parseStringToDate(writeDateStr);//	格式 ：2014-08-01 16:15
+		Date writeDate = DateUtil.parseStringToDate(writeDateStr);//	格式 ：2014-08-01 16:15
 		LOG.info("writeDate:"+writeDate);
 		cb.setWriteDate(writeDate);
 		
 		//create_date 				文章加入数据库的时间   暂定相同
-		Date create_date = dateUtil.getNow(); 
+		Date create_date = DateUtil.getNow(); 
 		LOG.info("create_date:"+create_date);
 		cb.setCreateDate(create_date);
 		
 		//设置更新时间 ：update_date 				本条数据更新的时间    csdn 更新时间同创建时间
-		Date update_date = dateUtil.getNow(); 
+		Date update_date = DateUtil.getNow(); 
 		LOG.info("update_date:"+update_date);
 		cb.setUpdateDate(update_date);
 		

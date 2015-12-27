@@ -10,9 +10,9 @@ import java.util.Date;
 
 import org.apache.log4j.Logger;
 
-public class dateUtil {
+public class DateUtil {
 	
-	public static final Logger LOG = Logger.getLogger(dateUtil.class);
+	public static final Logger LOG = Logger.getLogger(DateUtil.class);
 	
 	public static Date parseStringToDate(String dateStr){
 		SimpleDateFormat sdf = null;
