@@ -28,6 +28,17 @@ public class DateUtil {
 	
 	public static Date getNow(){
 		return new Date();
-	} 
+	}
+
+	public static String parseDateToString(Date date) {
+		SimpleDateFormat sdf = null;
+		try {
+			sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			return sdf.format(date);
+		} catch (Exception e) {
+			LOG.error("parse date to string error", e);
+			return null;
+		}
+	}
 	
 }

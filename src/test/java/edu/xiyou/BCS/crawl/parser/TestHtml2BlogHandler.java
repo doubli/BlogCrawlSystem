@@ -1,6 +1,7 @@
 package edu.xiyou.BCS.crawl.parser;
 
 import com.google.common.collect.Lists;
+import edu.xiyou.BCS.BaseTest;
 import edu.xiyou.BCS.crawl.parser.PageDiggerImpl.PageDiggerCSDN;
 import edu.xiyou.BCS.crawl.parser.PageDiggerImpl.PageDiggerITEYE;
 import edu.xiyou.BCS.model.CrawlBlog;
@@ -26,19 +27,14 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 博客抓取后，对抓取到的html进行处理，转化称本地所需的格式,它实现了爬虫Egg 的Handler 接口，
  * 它定义了抓取成功，失败，以及下一次抓取链接提取的操作
  */
-public class Html2BlogHandler implements Handler {
+public class TestHtml2BlogHandler  extends BaseTest implements Handler {
     private static final Logger LOGGER = LoggerFactory.getLogger(Html2BlogHandler.class);
 
     private RegexRule regexRule;
 
-    @Resource
     private CrawlBlogService crawlBlogService;
 
     private AtomicInteger num = new AtomicInteger(0);
-
-    public void init() throws Exception {
-        crawlBlogService.deleteAllRecords();
-    }
 
     @Override
     public void onSuccess(Response response) {

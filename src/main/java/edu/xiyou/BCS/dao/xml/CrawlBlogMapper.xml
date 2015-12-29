@@ -303,4 +303,8 @@
       </if>
     </where>
   </select>
+
+  <select id="deleteAllRecords" >
+    truncate table crawl_blogs
+  </select>
 </mapper>

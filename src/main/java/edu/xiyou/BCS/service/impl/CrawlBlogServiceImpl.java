@@ -53,6 +53,17 @@ public class CrawlBlogServiceImpl implements CrawlBlogService{
         }
     }
 
+    @Override
+    public void deleteAllRecords() throws Exception {
+        LOG.info("delete crawl blogs all records ");
+        try {
+            crawlBlogMapper.deleteAllRecords();
+        }catch (Exception e){
+            LOG.error("delete all records , Exception={}",  e);
+            throw new Exception("delete all records , Exception={}",  e);
+        }
+    }
+
     public CrawlBlogMapper getCrawlBlogMapper() {
         return crawlBlogMapper;
     }

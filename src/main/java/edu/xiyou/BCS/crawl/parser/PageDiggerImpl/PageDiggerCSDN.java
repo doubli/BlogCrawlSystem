@@ -30,7 +30,7 @@ public class PageDiggerCSDN implements PageDigger{
 	
 	/**
 	 *   获取页面上的信息
-	 * @param html
+	 * @param resp
 	 * @return CrawBlog对象
 	 */
 	public  CrawlBlog getInfo(Response resp){
@@ -52,7 +52,6 @@ public class PageDiggerCSDN implements PageDigger{
 		
 		//设置文章的内容 content
 		String article_content = document.select("#article_content").html();
-		LOG.info("content:"+article_content);
 		cb.setContent(article_content);
 		
 		//设置author		 作者
@@ -67,12 +66,12 @@ public class PageDiggerCSDN implements PageDigger{
 		cb.setWriteDate(writeDate);
 		
 		//create_date 				文章加入数据库的时间   暂定相同
-		Date create_date = DateUtil.getNow(); 
+		Date create_date = DateUtil.getNow();
 		LOG.info("create_date:"+create_date);
 		cb.setCreateDate(create_date);
 		
 		//设置更新时间 ：update_date 				本条数据更新的时间    csdn 更新时间同创建时间
-		Date update_date = DateUtil.getNow(); 
+		Date update_date = DateUtil.getNow();
 		LOG.info("update_date:"+update_date);
 		cb.setUpdateDate(update_date);
 		

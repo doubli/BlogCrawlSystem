@@ -1,4 +1,4 @@
-package edu.xiyou.BCS.crawl;
+package edu.xiyou.BCS.crawl.parser;
 
 import edu.xiyou.andrew.Egg.parser.Handler;
 import edu.xiyou.andrew.Egg.parser.LinksList;
