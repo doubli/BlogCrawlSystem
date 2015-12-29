@@ -30,7 +30,7 @@
 
     <bean id="fetchBlogJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="fetchBlogJob"/>
-        <property name="targetMethod" ref="work"/>
+        <property name="targetMethod" value="work"/>
         <property name="concurrent" value="false"/>
     </bean>
 
@@ -40,10 +40,10 @@
     </bean>
 
 
-    <bean id="testJob" class="edu.xiyou.BCS.timetask.SimpleJob"/>
+   <!-- <bean id="testJob" class="edu.xiyou.BCS.timetask.SimpleJob"/>
     <bean id="testJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="testJob"/>
-        <property name="targetMethod" ref="work"/>
+        <property name="targetMethod" value="work"/>
         <property name="concurrent" value="false"/>
     </bean>
 
@@ -51,14 +51,14 @@
         <property name="jobDetail" ref="testJobDetail"/>
         <property name="cronExpression" value="*/5 * * * * ?"/>
     </bean>
-
+-->
 
 
     <bean id="jobScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
                 <ref bean="fetchBlogJobTrigger"/>
-                <ref bean="testJobTrigger"/>
+                <!--<ref bean="testJobTrigger"/>-->
             </list>
         </property>
         <property name="autoStartup" value="true"/>
