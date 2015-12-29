@@ -18,7 +18,7 @@ public class CrawlUrl  extends BaseModel{
     private Date updateDate;
 
     private Date crawlDate;
-
+    
     public Integer getId() {
         return id;
     }

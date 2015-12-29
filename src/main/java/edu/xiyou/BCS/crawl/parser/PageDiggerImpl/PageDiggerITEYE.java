@@ -83,7 +83,8 @@ public class PageDiggerITEYE implements PageDigger{
 		
 		//vistors_num 				原文章浏览者的数目     
 		String vistorsNumStr = document.select(".blog_bottom ul li:eq(1)").text();
-		Pattern patternNum = Pattern.compile("\\d+");
+		Pattern patternNum = Pattern.compile("\\\\d+");
+		Pattern patternNum1 = Pattern.compile("(http|https):\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&amp;:/~\\+#]*[\\w\\-\\@?^=%&amp;/~\\+#])?");
 		Matcher matcherNum = patternNum.matcher(vistorsNumStr);
 		Integer visitNumber = 0;
 		if(matcherNum.find()){

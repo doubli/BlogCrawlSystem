@@ -4,6 +4,8 @@ import edu.xiyou.BCS.model.CrawlUrl;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface CrawlUrlMapper {
     int deleteByPrimaryKey(Integer id);
 
