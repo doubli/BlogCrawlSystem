@@ -23,6 +23,8 @@ public class Page<T> implements Serializable{
 	private boolean hasNextPage;
 	/** 开始的记录index */
 	private int beginIndex;
+	/** 结束的记录index */
+	private int endIndex;
 	/** 数据list */
 	private List<T> pageList;
 
@@ -33,6 +35,7 @@ public class Page<T> implements Serializable{
 
         this.totalPage = getTotalPage(pageSize, totalRecords);
         this.beginIndex = getBeginIndex(pageSize, currentPage);
+        this.endIndex = getEndIndex(currentPage, totalRecords, pageSize);
         this.hasNextPage = hasNextPage(currentPage, this.totalPage);
         this.hasPrePage = hasPrePage(currentPage);
         this.currentPage = getCurrentPage(currentPage);
@@ -78,7 +81,16 @@ public class Page<T> implements Serializable{
 		this.totalPage = totalPage;
 	}
 
-	public int getTotalRecords() {
+    public int getEndIndex(int currentPage, int totalRecords, int pageSize) {
+        int end = currentPage * pageSize;
+        return end > totalRecords ? totalRecords : end;
+    }
+
+    public void setEndIndex(int endIndex) {
+        this.endIndex = endIndex;
+    }
+
+    public int getTotalRecords() {
 		return totalRecords;
 	}
 
