@@ -6,6 +6,6 @@ public class PageConstant {
 	public static final int DEFAULT_PAGE_SIZE = 3;
 	
 	/**默认显示第几页记录*/
-	public static final int DEFAULT_PAGE_NUM = 1;
+	public static final int DEFAULT_CURRENT_PAGE = 1;
 
 }
