@@ -25,6 +25,8 @@ public class Page<T> implements Serializable{
 	private int beginIndex;
 	/** 结束的记录index */
 	private int endIndex;
+    /** 查询数据对象 */
+    private T  object;
 	/** 数据list */
 	private List<T> pageList;
 
@@ -65,6 +67,13 @@ public class Page<T> implements Serializable{
 		return totalPage != 0 && totalPage != currentPage;
 	}
 
+    public T getObject() {
+        return object;
+    }
+
+    public void setObject(T object) {
+        this.object = object;
+    }
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
 	}
