@@ -1,14 +1,13 @@
 package edu.xiyou.BCS.service;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import org.junit.Test;
-
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import edu.xiyou.BCS.BaseTest;
 import edu.xiyou.BCS.model.CrawlUrl;
+import org.junit.Test;
+
+import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * Created by andrew on 15-12-15.
@@ -48,8 +47,8 @@ public class CrawlUrlServiceTest  extends BaseTest{
     @Test
     public void testSelectBySelective(){
         try {
-            List<CrawlUrl> list = crawlUrlService.selectBySelective(new CrawlUrl());
-            for (CrawlUrl crawlUrl : list){
+            PageInfo<CrawlUrl> list = crawlUrlService.selectBySelective(new CrawlUrl(),new Page(1,3));
+            for (CrawlUrl crawlUrl : list.getList()){
                 System.out.println(crawlUrl);
             }
         } catch (Exception e) {

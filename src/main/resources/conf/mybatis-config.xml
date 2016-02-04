@@ -3,11 +3,20 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-        <!-- 命名空间 -->
+    <!--配置的时候需要注意顺序 顺序会导致该文件报错 -->
+     <!-- 命名空间 -->
     <typeAliases>
         <package name="edu.xiyou.BCS.model"/>
     </typeAliases>
 
+
+    <!--配置mysql分页拦截器-->
+     <plugins>
+         <plugin interceptor="com.github.pagehelper.PageHelper">
+             <!--设置数据库方言-->
+             <property name="dialect" value="mysql"/>
+         </plugin>
+     </plugins>
     <!-- 映射map -->
     <mappers>
     </mappers>

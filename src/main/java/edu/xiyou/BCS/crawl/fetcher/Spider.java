@@ -1,22 +1,21 @@
 package edu.xiyou.BCS.crawl.fetcher;
 
-import java.util.Collections;
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import com.github.pagehelper.Page;
 import com.google.common.collect.Lists;
-
 import edu.xiyou.BCS.crawl.parser.Html2BlogHandler;
 import edu.xiyou.BCS.model.CrawlUrl;
+import edu.xiyou.BCS.page.PageConstant;
 import edu.xiyou.BCS.service.CrawlUrlService;
 import edu.xiyou.andrew.Egg.fetcher.Fetcher;
 import edu.xiyou.andrew.Egg.scheduler.HashSetScheduler;
 import edu.xiyou.andrew.Egg.scheduler.Scheduler;
 import edu.xiyou.andrew.Egg.utils.RegexRule;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.annotation.Resource;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by andrew on 15-12-16.
@@ -37,7 +36,8 @@ public class Spider {
 
     {
         try {
-            crawlUrlList = crawlUrlService.selectBySelective(new CrawlUrl());
+            Page page = new Page(PageConstant.DEFAULT_CURRENT_PAGE, PageConstant.DEFAULT_PAGE_SIZE);
+            crawlUrlList = crawlUrlService.selectBySelective(new CrawlUrl(),page).getList();
         } catch (Exception e) {
             crawlUrlList = Lists.newArrayList();
         }

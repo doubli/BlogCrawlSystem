@@ -1,9 +1,9 @@
 package edu.xiyou.BCS.service;
 
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import edu.xiyou.BCS.model.CrawlUrl;
-
-import java.util.List;
 
 /**
  * Created by andrew on 15-12-8.
@@ -14,7 +14,7 @@ public interface CrawlUrlService {
 
     int insert(CrawlUrl record) throws Exception;
 
-    List<CrawlUrl> selectBySelective(CrawlUrl record) throws Exception;
+    PageInfo<CrawlUrl> selectBySelective(CrawlUrl record, Page page) throws Exception;
 
     int deleteByPrimaryKey(Integer id) throws Exception;
 }

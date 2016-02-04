@@ -1,33 +1,59 @@
+/*
 package edu.xiyou.BCS.page;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
+*/
+/**
+ *自己写的    废弃
+ *//*
 
-public class Page<T> implements Serializable{
+
+
+public class Page<T> implements Serializable {
 	
 	private static final long serialVersionUID = -6206830784046697246L;
 
-	/** 页面大小	 */
+	*/
+/** 页面大小	 *//*
+
 	private int pageSize = PageConstant.DEFAULT_PAGE_SIZE;
-	/** 总页数	 */
+	*/
+/** 总页数	 *//*
+
 	private int totalPage = 0;
-	/** 当前页数 */
+	*/
+/** 当前页数 *//*
+
 	private int currentPage =PageConstant.DEFAULT_CURRENT_PAGE;
-	/** 总记录数 */
+	*/
+/** 总记录数 *//*
+
 	private int totalRecords = 0;
-	/** 是否有前一页 */
+	*/
+/** 是否有前一页 *//*
+
 	private boolean hasPrePage;
-	/** 是否有后一页 */
+	*/
+/** 是否有后一页 *//*
+
 	private boolean hasNextPage;
-	/** 开始的记录index */
+	*/
+/** 开始的记录index *//*
+
 	private int beginIndex;
-	/** 结束的记录index */
+	*/
+/** 结束的记录index *//*
+
 	private int endIndex;
-    /** 查询数据对象 */
+    */
+/** 查询数据对象 *//*
+
     private T  object;
-	/** 数据list */
+	*/
+/** 数据list *//*
+
 	private List<T> pageList;
 
 	public Page(int currentPage, int totalRecords, int pageSize){
@@ -156,3 +182,4 @@ public class Page<T> implements Serializable{
         System.out.println(new Page(4,10,3));
     }
 }
+*/

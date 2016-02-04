@@ -17,5 +17,5 @@ public interface CrawlUrlMapper {
 
     int updateByPrimaryKey(CrawlUrl record);
 
-    List<CrawlUrl> selectBySelective(CrawlUrl record);
+    List<CrawlUrl> selectBySelective(CrawlUrl record);//, @Param("page")Page page
 }

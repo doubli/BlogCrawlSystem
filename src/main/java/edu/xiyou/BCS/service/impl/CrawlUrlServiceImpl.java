@@ -1,5 +1,8 @@
 package edu.xiyou.BCS.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import edu.xiyou.BCS.dao.CrawlUrlMapper;
 import edu.xiyou.BCS.model.CrawlUrl;
 import edu.xiyou.BCS.service.CrawlUrlService;
@@ -8,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * Created by andrew on 15-12-8.
@@ -34,10 +36,13 @@ public class CrawlUrlServiceImpl implements CrawlUrlService {
     }
 
     @Override
-    public List<CrawlUrl> selectBySelective(CrawlUrl record) throws Exception {
+    public PageInfo<CrawlUrl> selectBySelective(CrawlUrl record ,Page page) throws Exception {
         LOG.info("selectBySelective selective = {}", record);
         try {
-            return crawlUrlMapper.selectBySelective(record);
+            PageHelper.startPage(page.getPageNum(),page.getPageSize());
+            PageInfo pageInfo = new PageInfo(crawlUrlMapper.selectBySelective(record));
+            System.out.println(pageInfo.getList());
+            return pageInfo;
         }catch (Exception e){
             LOG.error("selectBySelective selective = {}, Exception = {}" + record,  e);
             throw new Exception("selectBySelective selective = {}, Exception = {}" + record,  e);

@@ -1,9 +1,10 @@
 package edu.xiyou.BCS.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
+import edu.xiyou.BCS.model.CrawlUrl;
+import edu.xiyou.BCS.service.CrawlUrlService;
+import edu.xiyou.BCS.util.DateUtil;
 import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import edu.xiyou.BCS.model.CrawlUrl;
-import edu.xiyou.BCS.service.CrawlUrlService;
-import edu.xiyou.BCS.util.DateUtil;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/")
@@ -26,8 +26,6 @@ public class BscController {
 	@Autowired
 	private CrawlUrlService crawlUrlService;
 	
-	
-
 	@RequestMapping(value="/addUrl",method=RequestMethod.POST)
 	public String index(@Param(value = "url") String url,@Param(value = "regex") String regex){
 		
@@ -65,18 +63,19 @@ public class BscController {
 		}
 		return model;
 	}
-	
 	@RequestMapping(value="/listUrls",method={RequestMethod.POST,RequestMethod.GET})
-	public String listUrl(Model model){
-		List<CrawlUrl> urlList = null; 
+	public String listUrl(Model model,int currentPage, int pageSize){
+		PageInfo<CrawlUrl> dataList = null;
+		System.out.println("当前的currentPage:"+currentPage+"|||pageSize:"+pageSize);
 		String Msg = "ok";
 		try {
-			urlList = crawlUrlService.selectBySelective(null);
+			Page<CrawlUrl> page = new Page<CrawlUrl>(currentPage,pageSize);
+			dataList = crawlUrlService.selectBySelective(null,page);
 		} catch (Exception e) {
 			e.printStackTrace();
 			Msg = "error";
 		}
-		model.addAttribute("urlList",urlList);
+		model.addAttribute("dataList",dataList);
 		model.addAttribute("Msg",Msg);
 		return "main";
 	}
