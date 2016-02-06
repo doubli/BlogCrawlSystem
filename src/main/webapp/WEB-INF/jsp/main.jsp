@@ -13,16 +13,82 @@
 <link rel="stylesheet" href="jqPagination/css/jqpagination.css" />
 <script src="js/vendor/jquery-1.10.2.min.js"></script>
 <script src="jqPagination/js/jquery.jqpagination.js"></script>
-<script src="jqPagination/js/scripts.js"></script>
 <style type="text/css">
 .table td, th {
 	text-align: left;
 }
 
 .msg{
-	color: red;
+	color:red;
 }
 </style>
+	<script type="text/javascript">
+
+		function formateDate(date){
+			console.log(date);
+			var year = date.getFullYear();
+			var month = date.getMonth() + 1;
+			var day = date.getDay();
+			var hour = date.getHours();
+			var minute = date.getMinutes();
+			var second = date.getSeconds();
+			console.log(year);
+			return year+"-"+month+"-"+day+"  "+hour+":"+minute+":"+second;
+		}
+
+		function  addData(result){
+			var tab = $(".table");
+			$.each(result.dataList.list,function(i,url){
+				var str = "<tr><td>"+(i+1)+"</td><td><a>"+url['url']+"</a></td><td>"+formateDate(new Date(url['createDate']))+"</td><td><a onclick=\"del("+url['id']+");\">"+"删除</a>"+"</td></tr>";
+				console.log(str);
+				tab.append(str);
+			});
+			tab.append("<tr><td>bbbb</td><td>bbbb</td><td>bbbb</td><td>bbbb</td></tr>");
+		}
+
+		function forData(){
+			$.ajax({
+				type : "POST",
+				url : "listUrls.do",
+				async: true,
+				dataType : "json",
+				success : function(result) {
+					var pageNum = result.dataList.pageNum;
+					var maxPage = result.dataList.pages;
+					$('.pagination').jqPagination({
+						max_page: maxPage,
+						current_page : pageNum,
+						page_string:'Page {current_page} of {max_page}',
+					});
+					addData(result);
+				}
+			});
+		}
+
+		$(function(){
+			forData();
+
+			$('.pagination').jqPagination({
+				max_page: '{max_page}',
+				current_page : '{current_page}',
+				page_string:'Page {current_page} of {max_page}',
+				//回调函数
+				paged: function(page){
+					alert("回调了");
+				}
+			});
+
+			/*$('.pagination').jqPagination({
+				max_page: "33",
+				current_page : "$('dataList.pageNum')",
+				page_string:'Page {current_page} of {max_page}',
+				paged: function (page) {
+					location.href = 'listUrls.do?currentPage='+page;
+				}
+			});*/
+		});
+
+	</script>
 <script type="text/javascript">
 	function del(id) {
 		$.ajax({
@@ -77,37 +143,37 @@
 						<th>添加时间</th>
 						<th>操作</th>
 					</tr>
-					<c:if test="${Msg == 'error'} ">
+					<%--<c:if test="${Msg == 'error'} ">
 						<tr class ="msg">
 							<c:out value="请求错误 请刷新页面"></c:out>
 						</tr>
 					</c:if>
-					<c:if test="${Msg=='ok'  && fn:length(urlList) == 0}">
+					<c:if test="${Msg=='ok'  && fn:length(dataList.list) == 0}">
 						<tr class ="msg">
 							<c:out value="暂时无数据！请先添加Url"></c:out>
 						</tr>
 					</c:if>
-					<c:forEach items="${urlList}" var="urls" varStatus="status">
+					<c:forEach items="${dataList.list}" var="urls" varStatus="status">
 						<tr>
 							<td>${status.count}</td>
 							<td><a>${urls.url}</a></td>
-						<%-- 	<td><a>
+						&lt;%&ndash; 	<td><a>
 								<c:if test="${empty urls.author}">暂无数据</c:if>
 								<c:if test="${!empty urls.author}">${urls.author}</c:if>
-							</a></td> --%>
+							</a></td> &ndash;%&gt;
 							<td><a>${urls.createDate}</a></td>
 							<td>&nbsp;&nbsp;<a onclick="del('${urls.id}');">删除</a></td>
 						</tr>
-					</c:forEach>
+					</c:forEach>--%>
 
 				</table>
-				<!-- <div class="gigantic pagination">
+				<div class="gigantic pagination">
 					<a href="#" class="first" data-action="first">&laquo;</a> <a
 						href="#" class="previous" data-action="previous">&lsaquo;</a> <input
 						type="text" readonly="readonly" /> <a href="#" class="next"
 						data-action="next">&rsaquo;</a> <a href="#" class="last"
 						data-action="last">&raquo;</a>
-				</div> -->
+				</div>
 
 				<fieldset class="button-holder">
 					<a href="index.jsp"><input type="button" class="btn light" value="添&nbsp;&nbsp;加"/></a>
