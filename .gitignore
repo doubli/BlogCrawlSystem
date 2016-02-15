@@ -1,0 +1,8 @@
+/BlogCrawlSystem.iml
+/target
+/.idea
+/src/main/resources/conf/jdbc.properties
+.settings/
+.classpath
+.project
+*.log
